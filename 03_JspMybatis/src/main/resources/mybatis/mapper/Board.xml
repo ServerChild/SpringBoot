@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.repository.BoardDao">
+	<select id="list" resultType="com.study.dto.Board">
+	  SELECT * FROM BOARDTEST1 ORDER BY NO DESC
+	</select>
+  
+	<select id="detailBoard" resultType="com.study.dto.Board">
+		SELECT * FROM BOARDTEST1 WHERE NO = #{no}
+	</select>
+  
+	<select id="totalRecord" resultType="_int">
+		SELECT COUNT(*) FROM BOARDTEST1
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.study.dto.Board">
+		INSERT INTO BOARDTEST1
+			VALUES(BOARDTEST1_SEQ.NEXTVAL, #{title}, #{writer}, #{content})
+	</insert>
+	
+	<delete id="deleteBoard">
+		DELETE FROM BOARDTEST1 WHERE NO = #{no}
+	</delete>
+</mapper>
