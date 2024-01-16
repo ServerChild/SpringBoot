@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- "persistence.xml"은 'src/main/resources/META-INF' 경로에 있으면 JPA가 자동으로 인식 -->
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+		     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		     xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence 
+		                         https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+		    version="3.0">
+			 
+	<!-- 영속성 관리 -->
+	<persistence-unit name="Jpa01" transaction-type="RESOURCE_LOCAL">
+		<!-- <class>exam1.Member1</class> -->
+		<!-- <class>exam2.Member2</class> -->
+		<!-- <class>exam3.Member3</class> -->
+		<!-- <class>exam4.Member4</class> -->
+		<class>exam5.Member5</class>
+	
+	<!-- 
+		true일 경우 : "<class></class>"에 명시한 클래스만 엔티티로 로딩
+		false일 경우 : CLASSPATH에서 자동 탐색
+	-->
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+	
+		<!-- DB 설정(필수) -->
+		<properties>
+			<property name="jakarta.persistence.jdbc.driver"
+					  value="oracle.jdbc.OracleDriver" />
+			<property name="jakarta.persistence.jdbc.url"
+					  value="jdbc:oracle:thin:@localhost:1521/xe" />
+			<property name="jakarta.persistence.jdbc.user" value="springboot" />
+			<property name="jakarta.persistence.jdbc.password" value="springboot" />
+			
+			<!-- 
+				ORM 특징 : 객체 맵핑을 통해 자동으로 쿼리를 작성
+					- dialect : DB의 종류에 따라 최적화된 쿼리를 자동으로 작성하는 클래스 
+						+ 데이터베이스마다 쿼리문이 다르기 때문에 알려야 함(DB 유형 지정)
+			-->
+			<property name="hibernate.dialect"
+					  value="org.hibernate.dialect.OracleDialect" />
+			<!-- SQL문을 console에 보여줄 것인지 -->
+			<property name="hibernate.show_sql" value="true" />
+			<!-- SQL문 출력방법 지정 -->
+			<property name="hibernate.format_sql" value="true" />
+			<!-- 자동 매핑 -->
+			<property name="hibernate.id.new_generator_mappings" value="true"/>
+			<!-- 
+				TABLE을 생성, 변경, 삭제와 같은 DDL구문 자동 실행여부
+					- none : DDL을 사용하지 않음
+					- create : 기존 테이블이 있으면 drop 후 생성(create), 기존 테이블이 없으면 생성 -> 기존 데이터 모두 없어짐
+					- create-drop : 기존 테이블이 있으면 drop 후 생성(create)하며 실행 종료 시 생성했던 테이블 drop -> 애플리케이션이 종료되기 전에 삭제(drop)
+					- update : 기존 테이블이 있으면 사용, 없으면 생성 -> 매핑 설정이 변경되면 자동으로 내용만 반영(alter)
+			-->
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+		</properties>
+	</persistence-unit>
+</persistence>
