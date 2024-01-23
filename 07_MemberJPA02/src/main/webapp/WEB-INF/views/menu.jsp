@@ -17,8 +17,5 @@
 	<a href="/selectByNameLike?name=김">특정 단어에 해당하는 이름 조회</a><p/><br>
 	<a href="/selectByNameLikeDesc?name=김">특정 단어에 해당하는 이름 조회(내림차순)</a><p/><br>
 	<a href="/selectByNameLikeSort?name=김">특정 단어에 해당하는 이름 조회(Sort)</a><p/><br>
-	
-	<a href="/delete?id=1">데이터 삭제</a><p/><br>
-	<a href="/update?id=2&username=홍길동">데이터 수정</a><p/><br>
 </body>
 </html>
